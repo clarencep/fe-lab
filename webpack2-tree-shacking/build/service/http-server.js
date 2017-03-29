@@ -48,7 +48,7 @@ function run(PORT, HOST) {
                 }
             }
 
-            if (isInAutoRefreshMode) {
+            if (('autoRefresh' in req.query && +req.query.autoRefresh) || (!('autoRefresh' in req.query) && isInAutoRefreshMode)) {
                 data += renderAutoRefreshScript({now: Date.now()})
             }
 
@@ -61,7 +61,7 @@ function run(PORT, HOST) {
         })
     })
 
-    app.get('/_if_refreshed_since', function(req, res){
+    app.get('/__refresh_event_source', function(req, res){
         let onRefresh = function(){
             debug("refreshed! pushing to clients...")
 
@@ -135,7 +135,7 @@ function renderAutoRefreshScript({now}){
     return `<script>
 (function(){
     var lastRefreshedTime = ${now}
-    var source = new EventSource('/_if_refreshed_since')
+    var source = new EventSource('/__refresh_event_source')
 
     source.onmessage = function(e){
         if (!isNaN(e.data) && +e.data > lastRefreshedTime){
