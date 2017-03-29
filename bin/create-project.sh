@@ -1,0 +1,26 @@
+#!/bin/bash
+
+PROJECT_NAME=$1
+
+if [[ "$PROJECT_NAME" == "" ]]; then
+    echo Project name should not be empty.
+    exit 1
+fi;
+
+TPL_PROJECT=$2
+
+if [[ "$TPL_PROJECT" == "" ]]; then
+    TPL_PROJECT=basic
+fi;
+
+cd `dirname $0`\..
+
+echo Copying template to "$PROJECT_NAME"...
+cp -r "project-templates/$TPL_PROJECT" "$PROJECT_NAME"
+
+cd "$PROJECT_NAME"
+
+echo Installing packages...
+cnpm install -d
+
+
