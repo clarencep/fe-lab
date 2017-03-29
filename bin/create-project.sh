@@ -13,7 +13,10 @@ if [[ "$TPL_PROJECT" == "" ]]; then
     TPL_PROJECT=basic
 fi;
 
-cd `dirname $0`\..
+cd `dirname $0`/..
+if [[ "$?" != "0" ]]; then
+    exit 2
+fi;
 
 echo Copying template to "$PROJECT_NAME"...
 cp -r "project-templates/$TPL_PROJECT" "$PROJECT_NAME"
