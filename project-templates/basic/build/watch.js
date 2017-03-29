@@ -1,0 +1,2 @@
+require('./service/watch').run()
+
