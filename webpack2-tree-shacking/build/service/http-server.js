@@ -34,7 +34,7 @@ function run(PORT, HOST) {
 
     const autoOpenBrowser = !process.argv[4]
 
-    const FE_DIST = path.join(__dirname, '../../fe-dist')
+    const FE_DIST = path.join(__dirname, '../../dist')
 
     app.get('/', function (req, res) {
         fs.readFile(path.join(FE_DIST, 'index.html'), 'utf8', function (err, data) {

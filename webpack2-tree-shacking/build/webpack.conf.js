@@ -6,10 +6,10 @@ const resolve = dir => path.join(__dirname, '..', dir)
 
 module.exports = {
     entry: {
-        app: resolve("fe-src/index.js")
+        app: resolve("src/index.js")
     },
     output: {
-        path: resolve("fe-dist"),
+        path: resolve("dist"),
         filename: 'js/[name].js',
         chunkFilename: 'js/[name].js',
         publicPath: '/',
@@ -54,8 +54,8 @@ module.exports = {
             filename: 'css/[name].[contenthash].css'
         }),
         new HtmlWebpackPlugin({
-            filename: resolve('fe-dist/index.html'),
-            template: resolve('fe-src/index.html'),
+            filename: resolve('dist/index.html'),
+            template: resolve('src/index.html'),
             inject: true,
             minify: {
                 removeComments: false,
