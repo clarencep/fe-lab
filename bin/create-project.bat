@@ -16,7 +16,7 @@ if "%TPL_PROJECT%" == "" (
 cd %~dp0\..
 
 echo Copying template to "%PROJECT_NAME%"...
-cp -r "project-templates/%TPL_PROJECT%" "%PROJECT_NAME%"
+cp -r ".project-templates/%TPL_PROJECT%" "%PROJECT_NAME%"
 
 cd "%PROJECT_NAME%"
 
