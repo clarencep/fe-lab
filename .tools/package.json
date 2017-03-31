@@ -2,6 +2,7 @@
   "dependencies": {
     "cb2p": "^1.1.0",
     "co": "^4.6.0",
+    "es6-string-html-template": "^1.0.1",
     "glob": "^7.1.1",
     "ncp": "^2.0.0"
   }

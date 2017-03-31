@@ -5,6 +5,8 @@ const fs = require('fs')
 const cb2p = require('cb2p')
 const co = require('co')
 const ncp = cb2p(require('ncp'))
+const {html, raw} = require('es6-string-html-template')
+
 const extend = Object.assign
 
 const sleep = cb2p((timeout, cb) => setTimeout(cb, timeout))
@@ -45,6 +47,8 @@ co(function *(){
             console.log(".page not exists. Clone it from github...")
             exec('git', 'clone -b gh-pages git@github.com:clarencep/fe-lab.git .pages')
             console.log(".pages cloned.")
+        } else {
+            exec('git', 'pull origin gh-pages --no-edit')
         }
 
         console.log("Begin copy projects' pages...")
@@ -78,7 +82,7 @@ co(function *(){
         exec('git', 'status')
         exec('git', 'add -A .')
         exec('git', 'commit --allow-empty -m auto-build-pages')
-        exec('git', 'push -fu origin gh-pages')
+        exec('git', 'push origin gh-pages')
         exec('git', 'status')
         console.log("Commited pages.")
 
@@ -96,7 +100,7 @@ function renderIndexPageHtml(projects)
         title: path.replace(/^[a-z]|-[a-z]/, x => x.replace('-', ' ').toUpperCase()).replace('Es6', 'ES6') 
     }))
 
-    return `<!doctype html>` + `<html>
+    return `<!doctype html>` + html`<html>
 <head>
     <meta charset="utf-8">
     <meta name="renderer" content="webkit">
@@ -118,16 +122,10 @@ function renderIndexPageHtml(projects)
         <p>This project is aimed at build project to test Front-End issues, features, bugs and etc.</p>
         <h2>Current Projects</h2>
         <ul>
-            ${projects.map(project => `<li><a href="${escape(project.link)}">${escape(project.title)}</a></li>`)}
+            ${projects.map(project => html`<li><a href="${project.link}">${project.title}</a></li>`)}
         </ul>
     </article>
 <!-- built files will be auto injected in the end of body element -->
 </body>
 </html>`
 }
-
-
-function escape(str){
-    return str.replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;')
-}
-
