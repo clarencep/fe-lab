@@ -4,7 +4,8 @@ const child_process = require('child_process')
 const fs = require('fs')
 const cb2p = require('cb2p')
 const co = require('co')
-const ncp = cb2p(require('ncp'))
+const rm = cb2p(require('rimraf'))
+const rcopy = require('recursive-copy')
 const {html, raw} = require('es6-string-html-template')
 
 const extend = Object.assign
@@ -43,18 +44,18 @@ co(function *(){
 
         console.log("Got projects: ", projects)
 
-        if (!fs.existsSync('.pages')){
-            console.log(".page not exists. Clone it from github...")
-            exec('git', 'clone -b gh-pages git@github.com:clarencep/fe-lab.git .pages')
-            console.log(".pages cloned.")
-        } else {
-            exec('git', 'pull origin gh-pages --no-edit')
+        if (fs.existsSync('.pages')){
+            yield rm('.pages')
         }
-
+        
+        console.log("Clone .pages from github...")
+        exec('git', 'clone -b gh-pages git@github.com:clarencep/fe-lab.git .pages')
+        console.log(".pages cloned.")
+        
         console.log("Begin copy projects' pages...")
         const processing = projects.map(project => {
             console.log("processing project: " + project)
-            return ncp(path.join(project, 'dist'), path.join('.pages', project))
+            return rcopy(path.join(project, 'dist'), path.join('.pages', project), {overwrite: true})
                 .then(() => {
                     console.log("copied pages of project: " + project)
                 })
@@ -69,8 +70,6 @@ co(function *(){
         console.log("Copyed projects' pages. ")
         console.log(".pages: ", glob.sync('.pages/**/*'))
         console.log("")
-
-        yield sleep(1000)
 
         console.log("Build index page...")
         const indexPageHtml = renderIndexPageHtml(projects)
