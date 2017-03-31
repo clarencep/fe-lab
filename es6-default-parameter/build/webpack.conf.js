@@ -12,7 +12,7 @@ module.exports = {
         path: resolve("dist"),
         filename: 'js/[name].js',
         chunkFilename: 'js/[name].js',
-        publicPath: '/',
+        // publicPath: '/',
     },
     resolve: {
         extensions: ['.js', '.css', '.less'],
@@ -55,7 +55,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: resolve('dist/index.html'),
-            template: resolve('src/index.html'),
+            template: resolve('src/index.html.js'),
             inject: true,
             minify: {
                 removeComments: false,

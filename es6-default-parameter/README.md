@@ -1,1 +1,3 @@
-# A basic project template in fe-lab
+# 使用ES6的参数默认值的时候的注意事项
+
+请打开F12控制台查看输出。
