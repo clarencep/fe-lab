@@ -1,0 +1,27 @@
+branches:
+  only:
+  - master
+
+language: node_js
+
+sudo: false
+
+node_js:
+  - '6.9'
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_2e8cc0dc8a9b_key -iv $encrypted_2e8cc0dc8a9b_iv -in ssh_key_travis.enc -out ssh_key_travis -d
+  - cp ssh_key_travis ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - eval $(ssh-agent)
+  - ssh-add ~/.ssh/id_rsa
+  - cp .ssh_config ~/.ssh/config
+  - git config --global user.name "Clarence-pan"
+  - git config --global user.email "clarence-pan@foxmail.com"
+
+install:
+  - npm install
+
+script:
+  - node bin/build-pages.js
+
