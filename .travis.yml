@@ -17,7 +17,9 @@ before_install:
 - git config --global user.email "clarence-pan@foxmail.com"
 
 install:
+- cd .tools
 - npm install
+- cd ..
 
 script:
 - node bin/build-pages.js
