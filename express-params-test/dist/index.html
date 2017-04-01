@@ -1,0 +1,74 @@
+<!doctype html><html>
+<head>
+    <meta charset=utf-8>
+    <meta name=renderer content=webkit>
+    <meta name=viewport id=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <meta name=HandheldFriendly content=true>
+    <meta name=MobileOptimized content=width>
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta name=applicable-device content=mobile>
+    <meta name=format-detection content="telephone=no">
+    <title>测试 `express` 框架中的参数：</title>
+</head>
+<body>
+    <div>
+    <form method=POST action="/user/123?foo=1&bar=2">
+        <h1>Test Form:</h1>
+        <label>
+            aaa: <input type=text name=aaa value=1>
+        </label>
+        <label>
+            bbb: <input type=text name=bbb value=1>
+        </label>
+        <button type=submit>Submit</button>
+    </form>
+</div>
+    <article><h1 id=express>测试 <code>express</code> 框架中的参数：</h1>
+<blockquote>
+  <p>这个需要开启服务端(<code>npm run server</code>)，看服务端的日志。</p>
+</blockquote>
+<p>注意：<code>req.params</code> 只有在参数化的路径中的参数。查询字符串中的参数要用 <code>req.query</code>.</p>
+<p>比如</p>
+<pre><code class="js language-js">// server.js:
+app.post('/user/:id', function(req, res){
+    console.log('req.params: ', req.params)
+    console.log('req.query: ', req.query)
+    console.log('req.body: ', req.body)
+})
+</code></pre>
+<pre><code>// HTTP request:
+POST /user/123?foo=1&amp;bar=2
+Content-Type: application/x-www-form-urlencoded
+
+aaa=1&amp;bbb=2
+</code></pre>
+<p>这样的请求，应该是要用 <code>req.query.foo</code> 和 <code>req.query.bar</code> 来获取 foo 和 bar 的值，最终打印出如下:</p>
+<pre><code class="text language-text">req.params:  { id: '123' }
+req.query:  { foo: '1', bar: '2' }
+req.body:  { aaa: '1', bbb: '2' }
+</code></pre>
+<h2 id=reqbody>关于 <code>req.body</code></h2>
+<p>此外，<code>express</code> 框架本身是没有解析 <code>req.body</code> 的 -- 如果打印出来 <code>req.body: undefined</code>则说明没有安装解析 <code>req.body</code> 的插件：</p>
+<p>为了解析 <code>req.body</code> 一般可以安装 <code>body-parser</code> 这个插件：</p>
+<pre><code>// 假设 `app` 是 `express` 的实例：
+
+const bodyParser = require('body-parser')
+
+// 在所有路由前插入这个中间件：
+
+app.use(bodyParser.urlencoded())
+</code></pre>
+<p>这样就可以了。</p>
+<p><code>bodyParser.urlencoded()</code>是HTML中默认的查询字符串形式的编码,即<code>application/x-www-form-urlencoded</code>. 如果需要解析其他格式的，则需要分别加入其他格式的中间件，比如：</p>
+<ul>
+<li><code>bodyParser.json()</code> 支持JSON格式（<code>application/json</code>）</li>
+<li><code>bodyParser.raw()</code> 将会把 <code>req.body</code> 置为一个 <code>Buffer</code> </li>
+<li><code>bodyParser.text()</code> 将会把 <code>req.body</code> 置为一个 <code>string</code></li>
+</ul>
+<p>然而上传文件用的 <code>multipart/form-data</code> 格式却没有被 <code>bodyParser</code> 所支持，需要使用 <code>busboy</code> 之类的其他中间件</p></article>
+    <!-- built files will be auto injected in the end of body element -->
+<script type=text/javascript src=js/app.js></script></body>
+</html>
