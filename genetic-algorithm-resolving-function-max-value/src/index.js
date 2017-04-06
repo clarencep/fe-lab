@@ -90,7 +90,7 @@ $go.addEventListener('click', function (e) {
     historyItem.className = 'history-item'
     historyItem.innerText = `
 ${ (((+ new Date()) - start) / 1000).toFixed(3)}s 完成：
-函数：f(x) = ${func}
+函数：f(x) = ${funcStr}
 求解范围：${range.min} ~ ${range.max}
 求解精度：${length}
 种群大小：${count}
@@ -103,7 +103,7 @@ ${ (((+ new Date()) - start) / 1000).toFixed(3)}s 完成：
 
     let $funcChart = document.createElement('canvas')
     $funcChart.width = 600
-    $funcChart.height = 400
+    $funcChart.height = 300
     historyItem.appendChild($funcChart)
 
     let funcChart = new Chart($funcChart, {
@@ -133,7 +133,7 @@ ${ (((+ new Date()) - start) / 1000).toFixed(3)}s 完成：
 
     let $middleResultChart = document.createElement('canvas')
     $middleResultChart.width = 600
-    $middleResultChart.height = 400
+    $middleResultChart.height = 300
     historyItem.appendChild($middleResultChart)
 
     let middleResultChart = new Chart($middleResultChart, {
