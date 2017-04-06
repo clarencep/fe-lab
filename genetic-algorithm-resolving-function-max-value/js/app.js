@@ -31351,13 +31351,13 @@ $go.addEventListener('click', function (e) {
 
     var historyItem = document.createElement('div');
     historyItem.className = 'history-item';
-    historyItem.innerText = '\n' + ((+new Date() - start) / 1000).toFixed(3) + 's \u5B8C\u6210\uFF1A\n\u51FD\u6570\uFF1Af(x) = ' + func + '\n\u6C42\u89E3\u8303\u56F4\uFF1A' + range.min + ' ~ ' + range.max + '\n\u6C42\u89E3\u7CBE\u5EA6\uFF1A' + length + '\n\u79CD\u7FA4\u5927\u5C0F\uFF1A' + count + '\n\u8FDB\u5316\u8F6E\u6570\uFF1A' + evolves + '\n\u7ED3\u679C\uFF1A' + result;
+    historyItem.innerText = '\n' + ((+new Date() - start) / 1000).toFixed(3) + 's \u5B8C\u6210\uFF1A\n\u51FD\u6570\uFF1Af(x) = ' + funcStr + '\n\u6C42\u89E3\u8303\u56F4\uFF1A' + range.min + ' ~ ' + range.max + '\n\u6C42\u89E3\u7CBE\u5EA6\uFF1A' + length + '\n\u79CD\u7FA4\u5927\u5C0F\uFF1A' + count + '\n\u8FDB\u5316\u8F6E\u6570\uFF1A' + evolves + '\n\u7ED3\u679C\uFF1A' + result;
 
     document.getElementById('histories').insertAdjacentElement('afterbegin', historyItem);
 
     var $funcChart = document.createElement('canvas');
     $funcChart.width = 600;
-    $funcChart.height = 400;
+    $funcChart.height = 300;
     historyItem.appendChild($funcChart);
 
     var funcChart = new __WEBPACK_IMPORTED_MODULE_22_chart_js___default.a($funcChart, {
@@ -31383,7 +31383,7 @@ $go.addEventListener('click', function (e) {
 
     var $middleResultChart = document.createElement('canvas');
     $middleResultChart.width = 600;
-    $middleResultChart.height = 400;
+    $middleResultChart.height = 300;
     historyItem.appendChild($middleResultChart);
 
     var middleResultChart = new __WEBPACK_IMPORTED_MODULE_22_chart_js___default.a($middleResultChart, {
