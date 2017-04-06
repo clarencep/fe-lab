@@ -18,6 +18,7 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-latest": "^6.24.0",
     "babel-preset-stage-2": "^6.22.0",
+    "chart.js": "^2.5.0",
     "css-loader": "^0.27.3",
     "debug": "^2.6.3",
     "es6-string-html-template": "^1.0.2",
