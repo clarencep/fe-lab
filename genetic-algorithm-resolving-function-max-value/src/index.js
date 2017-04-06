@@ -8,7 +8,6 @@ const {abs, acos, acosh, asin, asinh, atan, atan2, atanh, cbrt, ceil, clz32, cos
 
 function runGaFunc(funcStr, range, length, count, evolves){
     let func = eval('(function(x){ return (' + funcStr + ') })')
-    console.log("GA begin at " + +new Date())
     let ga = new GA(func, range, length, count)
 
     for (let x of xrange(evolves)){
@@ -16,14 +15,46 @@ function runGaFunc(funcStr, range, length, count, evolves){
     }
 
 
-    console.log("GA end at " + +new Date())
-
     let result = ga.result()
-    console.log(result)
 
     return result
 }
 
-runGaFunc('x + 10 * sin(5 * x) + 7 * cos(4 * x)', {min: 0, max: 9}, 17, 300, 200)
+function getElValById(id){
+    let el = document.getElementById(id)
+    return el && el.value
+}
+
+document.getElementById('go').addEventListener('click', function(e){
+    e.preventDefault()
+    e.stopPropagation()
+    let func = getElValById('func'),
+        range = {min: +getElValById('min'), max: +getElValById('max')},
+        length = +getElValById('length'),
+        count = +getElValById('count'),
+        evolves = +getElValById('evolves')
+
+    let start = +new Date()
+    let result = runGaFunc(
+        func,
+        range,
+        length,
+        count,
+        evolves
+    )
+
+    let historyItem = document.createElement('div')
+    historyItem.className = 'history-item'
+    historyItem.innerText = `
+${(((+new Date()) - start) / 1000).toFixed(3)}s 完成：
+函数：f(x) = ${func}
+求解范围：${range.min} ~ ${range.max}
+求解精度：${length}
+种群大小：${count}
+进化轮数：${evolves}
+结果：${result}
+    `
+    document.getElementById('histories').insertAdjacentElement('afterbegin', historyItem)
+})
 
 
