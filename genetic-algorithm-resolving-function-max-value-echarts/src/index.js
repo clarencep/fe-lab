@@ -45,12 +45,12 @@ const {
 
 // main function:
 
-function * runGaFunc(funcStr, range, length, count, evolves) {
+function * runGaFunc(funcStr, range, length, count, evolves, retainRate, randomSelectRate, mutationRate) {
     let func = eval('(function(x){ return (' + funcStr + ') })')
     let ga = new GA(func, range, length, count)
 
     for (let x of xrange(evolves)) {
-        ga.evolve()
+        ga.evolve(retainRate, randomSelectRate, mutationRate)
 
         yield {
             value: ga.result(),
@@ -80,7 +80,10 @@ $go.addEventListener('click', function (e) {
         },
         length = +getElValById('length'),
         count = +getElValById('count'),
-        evolves = +getElValById('evolves')
+        evolves = +getElValById('evolves'),
+        retainRate = +getElValById('retainRate'),
+        randomSelectRate = +getElValById('randomSelectRate'),
+        mutationRate = +getElValById('mutationRate')
 
     let start = +new Date()
 
@@ -102,6 +105,9 @@ ${ (((+ new Date()) - start) / 1000).toFixed(3)}s 完成：
 求解精度：${length}
 种群大小：${count}
 进化轮数：${evolves}
+留存率: ${retainRate}
+随机选择率：${randomSelectRate}
+变异率：${mutationRate}
 结果：${result.value}`
 
     document
@@ -114,12 +120,7 @@ ${ (((+ new Date()) - start) / 1000).toFixed(3)}s 完成：
     historyItem.appendChild($funcChart)
 
     let funcChart = echarts.init($funcChart)
-    let funcDataSamplesCount = 1000
-    let funcData = newArray(funcDataSamplesCount, i => {
-        let x = range.min + (range.max - range.min) * i / funcDataSamplesCount
-        return {x: x, y: calcFunc(x)}
-    })
-
+    let funcDataSamplesCount = getElValById('funcDataSamplesCount')
     funcChart.setOption({
         title: {
             text: 'f(x) = ' + funcStr
@@ -144,7 +145,7 @@ ${ (((+ new Date()) - start) / 1000).toFixed(3)}s 完成：
             extraCssText: 'width: 170px'
         },
         xAxis: {
-            data: funcData.map(x => x.x)
+            data: newArray(funcDataSamplesCount, i => range.min + (range.max - range.min) * i / funcDataSamplesCount)
         },
         yAxis: {
             splitLine: {
@@ -162,7 +163,8 @@ ${ (((+ new Date()) - start) / 1000).toFixed(3)}s 完成：
         series: [
             {
                 type: 'line',
-                data: funcData.map(x => x.y)
+                large: true,
+                data: newArray(funcDataSamplesCount, i => calcFunc(range.min + (range.max - range.min) * i / funcDataSamplesCount))
             }
         ]
     })
@@ -275,3 +277,5 @@ function refreshEChartsSizes(echartsObjArr){
 
     echartsObjArr.forEach(chart => chart.resize({width, height, silent: true}))
 }
+
+document.getElementById('loading').style = 'display:none'

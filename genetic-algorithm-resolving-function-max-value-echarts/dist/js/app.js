@@ -75350,7 +75350,7 @@ var abs = Math.abs,
 
 // main function:
 
-function runGaFunc(funcStr, range, length, count, evolves) {
+function runGaFunc(funcStr, range, length, count, evolves, retainRate, randomSelectRate, mutationRate) {
     var func, ga, _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, x;
 
     return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function runGaFunc$(_context) {
@@ -75373,7 +75373,7 @@ function runGaFunc(funcStr, range, length, count, evolves) {
 
                     x = _step.value;
 
-                    ga.evolve();
+                    ga.evolve(retainRate, randomSelectRate, mutationRate);
 
                     _context.next = 12;
                     return {
@@ -75449,7 +75449,10 @@ $go.addEventListener('click', function (e) {
     },
         length = +getElValById('length'),
         count = +getElValById('count'),
-        evolves = +getElValById('evolves');
+        evolves = +getElValById('evolves'),
+        retainRate = +getElValById('retainRate'),
+        randomSelectRate = +getElValById('randomSelectRate'),
+        mutationRate = +getElValById('mutationRate');
 
     var start = +new Date();
 
@@ -75485,7 +75488,7 @@ $go.addEventListener('click', function (e) {
 
     var historyItem = document.createElement('div');
     historyItem.className = 'history-item';
-    historyItem.innerText = '\n' + ((+new Date() - start) / 1000).toFixed(3) + 's \u5B8C\u6210\uFF1A\n\u51FD\u6570\uFF1Af(x) = ' + funcStr + '\n\u6C42\u89E3\u8303\u56F4\uFF1A' + range.min + ' ~ ' + range.max + '\n\u6C42\u89E3\u7CBE\u5EA6\uFF1A' + length + '\n\u79CD\u7FA4\u5927\u5C0F\uFF1A' + count + '\n\u8FDB\u5316\u8F6E\u6570\uFF1A' + evolves + '\n\u7ED3\u679C\uFF1A' + result.value;
+    historyItem.innerText = '\n' + ((+new Date() - start) / 1000).toFixed(3) + 's \u5B8C\u6210\uFF1A\n\u51FD\u6570\uFF1Af(x) = ' + funcStr + '\n\u6C42\u89E3\u8303\u56F4\uFF1A' + range.min + ' ~ ' + range.max + '\n\u6C42\u89E3\u7CBE\u5EA6\uFF1A' + length + '\n\u79CD\u7FA4\u5927\u5C0F\uFF1A' + count + '\n\u8FDB\u5316\u8F6E\u6570\uFF1A' + evolves + '\n\u7559\u5B58\u7387: ' + retainRate + '\n\u968F\u673A\u9009\u62E9\u7387\uFF1A' + randomSelectRate + '\n\u53D8\u5F02\u7387\uFF1A' + mutationRate + '\n\u7ED3\u679C\uFF1A' + result.value;
 
     document.getElementById('histories').insertAdjacentElement('afterbegin', historyItem);
 
@@ -75495,12 +75498,7 @@ $go.addEventListener('click', function (e) {
     historyItem.appendChild($funcChart);
 
     var funcChart = __WEBPACK_IMPORTED_MODULE_22_echarts___default.a.init($funcChart);
-    var funcDataSamplesCount = 1000;
-    var funcData = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_20__utils__["b" /* newArray */])(funcDataSamplesCount, function (i) {
-        var x = range.min + (range.max - range.min) * i / funcDataSamplesCount;
-        return { x: x, y: calcFunc(x) };
-    });
-
+    var funcDataSamplesCount = getElValById('funcDataSamplesCount');
     funcChart.setOption({
         title: {
             text: 'f(x) = ' + funcStr
@@ -75525,8 +75523,8 @@ $go.addEventListener('click', function (e) {
             extraCssText: 'width: 170px'
         },
         xAxis: {
-            data: funcData.map(function (x) {
-                return x.x;
+            data: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_20__utils__["b" /* newArray */])(funcDataSamplesCount, function (i) {
+                return range.min + (range.max - range.min) * i / funcDataSamplesCount;
             })
         },
         yAxis: {
@@ -75541,8 +75539,9 @@ $go.addEventListener('click', function (e) {
         }],
         series: [{
             type: 'line',
-            data: funcData.map(function (x) {
-                return x.y;
+            large: true,
+            data: __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_20__utils__["b" /* newArray */])(funcDataSamplesCount, function (i) {
+                return calcFunc(range.min + (range.max - range.min) * i / funcDataSamplesCount);
             })
         }]
     });
@@ -75652,6 +75651,8 @@ function refreshEChartsSizes(echartsObjArr) {
         return chart.resize({ width: width, height: height, silent: true });
     });
 }
+
+document.getElementById('loading').style = 'display:none';
 
 /***/ })
 /******/ ]);

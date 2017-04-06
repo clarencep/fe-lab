@@ -19,6 +19,7 @@
 <div>
     <label>函数：f(x) = <input id=func value="x + 10 * sin(5 * x) + 7 * cos(4 * x)" style="width: 30em"></label>
     <br>
+    <label>函数绘图精度：<input type=number id=funcDataSamplesCount value=1000 style="width: 5em"></label><br>
     <label>
         求解范围：<input type=number id=min value=0 style="width: 3em">
     </label> ~ <input type=number id=max value=9 style="width: 3em">
@@ -35,9 +36,22 @@
         进化轮数：<input type=number id=evolves value=200 style="width: 3em">
     </label>
     <br>
+    <label>
+        留存率：<input type=text id=retainRate value=0.2 style="width: 3em">
+    </label>
+    <br>
+    <label>
+        随机选择率：<input type=text id=randomSelectRate value=0.5 style="width: 3em">
+    </label>
+    <br>
+    <label>
+        变异率：<input type=text id=mutationRate value=0.01 style="width: 3em">
+    </label>
+    <br>
     <button id=go type=button>开始求解</button>
-    <div id=histories></div>
-<p></p></div><p></p>
+<div id=histories></div>
+<div id=loading>正在加载。。。</div>
+</div>
 <h2 id=-1>说明</h2>
 <p>遗传算法（英语：genetic algorithm (GA) ）是计算数学中用于解决最佳化的搜索算法，是进化算法的一种。进化算法最初是借鉴了进化生物学中的一些现象而发展起来的，这些现象包括遗传、突变、自然选择以及杂交等。</p>
 <p>本页面采用的流程比较简单：</p>
