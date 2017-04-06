@@ -1,0 +1,45 @@
+{
+  "name": "@fe-lab/basic-project-template",
+  "version": "1.0.0",
+  "description": "A basic template in fe-lab",
+  "main": "build/build.js",
+  "scripts": {
+    "dev": "node build/dev.js",
+    "server": "node build/server.js",
+    "build": "node build/build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-latest": "^6.24.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "chart.js": "^2.5.0",
+    "css-loader": "^0.27.3",
+    "debug": "^2.6.3",
+    "echarts": "^3.5.2",
+    "es6-string-html-template": "^1.0.2",
+    "express": "^4.15.2",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "glob": "^7.1.1",
+    "html-webpack-plugin": "^2.28.0",
+    "less": "^2.7.2",
+    "less-loader": "^4.0.2",
+    "moment": "^2.18.1",
+    "opn": "^4.0.2",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.6.1",
+    "rm": "^0.1.8",
+    "style-loader": "^0.16.1",
+    "ts-loader": "^2.0.3",
+    "typescript": "^2.2.2",
+    "webpack": "^2.3.2"
+  },
+  "devDependencies": {
+    "showdown": "^1.6.4"
+  }
+}
