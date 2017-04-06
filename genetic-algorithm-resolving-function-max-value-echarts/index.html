@@ -1,0 +1,54 @@
+<!doctype html><html>
+<head>
+    <meta charset=utf-8>
+    <meta name=renderer content=webkit>
+    <meta name=viewport id=viewport content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv=X-UA-Compatible content="IE=edge">
+    <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <meta name=HandheldFriendly content=true>
+    <meta name=MobileOptimized content=width>
+    <meta name=apple-mobile-web-app-capable content=yes>
+    <meta name=apple-mobile-web-app-status-bar-style content=black>
+    <meta name=applicable-device content=mobile>
+    <meta name=format-detection content="telephone=no">
+    <title>使用遗传算法来求解函数的最大值(使用echarts绘图)</title>
+<link href=css/app.c2d7bc2f46ce02c2543e0fc0669fa93f.css rel=stylesheet></head>
+<body>
+    <article><h1 id=echarts>使用遗传算法来求解函数的最大值(使用echarts绘图)</h1>
+<h2 id="">效果</h2>
+<div>
+    <label>函数：f(x) = <input id=func value="x + 10 * sin(5 * x) + 7 * cos(4 * x)" style="width: 30em"></label>
+    <br>
+    <label>
+        求解范围：<input type=number id=min value=0 style="width: 3em">
+    </label> ~ <input type=number id=max value=9 style="width: 3em">
+    <br>
+    <label>
+        求解精度：<input type=number id=length value=17 style="width: 3em">
+    </label>
+    <br>
+    <label>
+        种群大小：<input type=number id=count value=300 style="width: 3em">
+    </label>
+    <br>
+    <label>
+        进化轮数：<input type=number id=evolves value=200 style="width: 3em">
+    </label>
+    <br>
+    <button id=go type=button>开始求解</button>
+    <div id=histories></div>
+<p></p></div><p></p>
+<h2 id=-1>说明</h2>
+<p>遗传算法（英语：genetic algorithm (GA) ）是计算数学中用于解决最佳化的搜索算法，是进化算法的一种。进化算法最初是借鉴了进化生物学中的一些现象而发展起来的，这些现象包括遗传、突变、自然选择以及杂交等。</p>
+<p>本页面采用的流程比较简单：</p>
+<ul>
+<li>初始化种群(genPopulation)</li>
+<li>进化循环：<ul>
+<li>计算个体适应度(fitness)</li>
+<li>自然选择(selection)，其中适应度高的个体存活率高，适应度低的个体以小概率存活</li>
+<li>交叉(crossover)和变异(mutation)</li></ul></li>
+<li>进化到一定轮数则停止</li>
+</ul></article>
+    <!-- built files will be auto injected in the end of body element -->
+<script type=text/javascript src=js/app.js></script></body>
+</html>
