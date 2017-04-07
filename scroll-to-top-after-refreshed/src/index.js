@@ -6,6 +6,6 @@ console.log("hello world!")
 // window.scrollTo(0, 0)
 
 // 延时一小段时间后滚动到顶部，就可以了
-setTimeout(() => window.scrollTo(0, 0), 15)
+setTimeout(() => window.scrollTo(0, 0), 150)
 
 
