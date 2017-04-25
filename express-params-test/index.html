@@ -14,6 +14,8 @@
     <title>测试 `express` 框架中的参数：</title>
 </head>
 <body>
+    <a href=https://github.com/clarencep/fe-lab><img style="position: absolute; top: 0; right: 0; border: 0" src=https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67 alt="Fork me on GitHub" data-canonical-src=https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png></a>
+
     <div>
     <form method=POST action="/user/123?foo=1&bar=2">
         <h1>Test Form:</h1>
@@ -65,8 +67,8 @@ app.use(bodyParser.urlencoded())
 <p><code>bodyParser.urlencoded()</code>是HTML中默认的查询字符串形式的编码,即<code>application/x-www-form-urlencoded</code>. 如果需要解析其他格式的，则需要分别加入其他格式的中间件，比如：</p>
 <ul>
 <li><code>bodyParser.json()</code> 支持JSON格式（<code>application/json</code>）</li>
-<li><code>bodyParser.raw()</code> 将会把 <code>req.body</code> 置为一个 <code>Buffer</code> </li>
-<li><code>bodyParser.text()</code> 将会把 <code>req.body</code> 置为一个 <code>string</code></li>
+<li><code>bodyParser.raw()</code> 将会把 <code>req.body</code> 置为一个 <code>Buffer</code> (Content-Type：<code>application/octet-stream</code>)</li>
+<li><code>bodyParser.text()</code> 将会把 <code>req.body</code> 置为一个 <code>string</code> (Content-Type: <code>text/plain</code>)</li>
 </ul>
 <p>然而上传文件用的 <code>multipart/form-data</code> 格式却没有被 <code>bodyParser</code> 所支持，需要使用 <code>busboy</code> 之类的其他中间件</p></article>
     <!-- built files will be auto injected in the end of body element -->
