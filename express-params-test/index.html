@@ -61,7 +61,8 @@ app.use(bodyParser.urlencoded())
 <li><code>bodyParser.text()</code> 将会把 <code>req.body</code> 置为一个 <code>string</code> (Content-Type: <code>text/plain</code>)</li>
 </ul>
 <p>然而上传文件用的 <code>multipart/form-data</code> 格式却没有被 <code>bodyParser</code> 所支持，需要使用 <code>busboy</code> 之类的其他中间件</p></article>
-<script>
+
+    <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -71,7 +72,6 @@ app.use(bodyParser.urlencoded())
   ga('send', 'pageview');
 
 </script>
-
     
     <!-- built files will be auto injected in the end of body element -->
 <script type=text/javascript src=js/app.js></script></body>
