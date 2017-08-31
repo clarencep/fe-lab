@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1"
+     preserveAspectRatio="xMinYMin meet"
+     viewBox="0 0 660 342"
+     width="660" height="342"
+     xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink">
+
+    <image xlink:href="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png" width="660" height="342"/>
+
+    <rect x="2" y="284" width="656" height="58" fill="rgba(0,0,0,0.6)" stroke-width="1" ></rect>
+
+    <text text-anchor="start"
+          font-family="Microsoft Yahei, sans-serif" font-size="28"
+          x="20" y="322" fill="#fff">这是百度</text>
+    <text text-anchor="end"
+          font-family="Microsoft Yahei, sans-serif" font-size="28"
+          x="640" y="322" fill="#fff">😄</text>
+</svg>
