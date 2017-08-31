@@ -3,7 +3,9 @@
     "cb2p": "^1.1.0",
     "co": "^4.6.0",
     "es6-string-html-template": "^1.0.1",
+    "express": "^4.15.4",
     "glob": "^7.1.1",
+    "opn": "^5.1.0",
     "recursive-copy": "^2.0.6",
     "rimraf": "^2.6.1"
   }

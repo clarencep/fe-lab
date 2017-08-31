@@ -32,10 +32,12 @@
     "rimraf": "^2.6.1",
     "rm": "^0.1.8",
     "style-loader": "^0.16.1",
-    "webpack": "^2.3.2"
+    "es6-string-html-template": "^1.0.2",
+    "webpack": "^2.3.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "showdown": "^1.6.4"
   },
   "devDependencies": {
-    "es6-string-html-template": "^1.0.0",
-    "showdown": "^1.6.4"
+
   }
 }

@@ -45,12 +45,19 @@ co(function *(){
         console.log("Got projects: ", projects)
 
         if (fs.existsSync('.pages')){
-            yield rm('.pages')
-        }
-        
-        console.log("Clone .pages from github...")
-        exec('git', 'clone -b gh-pages git@github.com:clarencep/fe-lab.git .pages')
-        console.log(".pages cloned.")
+            // yield rm('.pages')
+            console.log('.pages exists, try to update it')
+            process.chdir('.pages')
+            exec('git', 'checkout gh-pages')
+            exec('git', 'reset --hard origin/gh-pages')
+            exec('git', 'pull --no-edit origin gh-pages')
+            process.chdir('..')
+            console.log(".pages updated.")
+        } else {
+            console.log("Clone .pages from github...")
+            exec('git', 'clone --depth 1 -b gh-pages git@github.com:clarencep/fe-lab.git .pages')
+            console.log(".pages cloned.")
+        }        
         
         console.log("Begin copy projects' pages...")
         const processing = projects.map(project => {
@@ -95,7 +102,7 @@ co(function *(){
 function renderIndexPageHtml(projects)
 {
     projects = projects.map(path => ({ 
-        link: path, 
+        link: path + '/', 
         title: path.replace(/^[a-z]|-[a-z]/, x => x.replace('-', ' ').toUpperCase()).replace('Es6', 'ES6') 
     }))
 
@@ -126,6 +133,17 @@ function renderIndexPageHtml(projects)
             ${projects.map(project => html`<li><a href="${project.link}">${project.title}</a></li>`)}
         </ul>
     </article>
+
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-67440907-4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments)};
+      gtag('js', new Date());
+    
+      gtag('config', 'UA-67440907-4');
+    </script>
+    
 <!-- built files will be auto injected in the end of body element -->
 </body>
 </html>`

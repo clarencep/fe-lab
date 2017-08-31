@@ -1,10 +1,12 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 const resolve = dir => path.join(__dirname, '..', dir)
 
 module.exports = {
+    context: resolve('.'),
     entry: {
         app: resolve("src/index.js")
     },
@@ -55,7 +57,7 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: resolve('dist/index.html'),
-            template: resolve('src/index.html'),
+            template: resolve('src/index.html.js'),
             inject: true,
             minify: {
                 removeComments: false,
@@ -67,5 +69,8 @@ module.exports = {
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
             chunksSortMode: 'dependency'
         }),
+        new CopyWebpackPlugin([
+            {context: resolve('assets'), from: '**/*', /*to dist, */}
+        ])
     ]
 }

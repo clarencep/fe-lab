@@ -22,7 +22,6 @@
     "css-loader": "^0.27.3",
     "debug": "^2.6.3",
     "echarts": "^3.5.2",
-    "es6-string-html-template": "^1.0.2",
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "glob": "^7.1.1",
@@ -37,9 +36,12 @@
     "style-loader": "^0.16.1",
     "ts-loader": "^2.0.3",
     "typescript": "^2.2.2",
-    "webpack": "^2.3.2"
+    "webpack": "^2.3.2",
+    "es6-string-html-template": "^1.0.2",
+    "copy-webpack-plugin": "^4.0.1",
+    "showdown": "^1.6.4"
   },
   "devDependencies": {
-    "showdown": "^1.6.4"
+
   }
 }
