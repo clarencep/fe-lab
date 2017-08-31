@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -172,19 +172,13 @@ function escape(str) {
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_es6_string_html_template__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_es6_string_html_template___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_es6_string_html_template__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_less__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_less__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__index_less__);
 var _templateObject = _taggedTemplateLiteral(['<div>\n    <div>\n        <label>Expected Strength: <input type=number id="expected_strength" value="64" />bits</label>\n    </div>\n    <div>\n        <label>Test Password: <input type=password id="passwd" ime-mode="disabled"/></label>\n        <div id="actual_strength" ></div>\n    </div>\n    <div>\n        <label>\n            <input type=checkbox id=show_password />\n            Show Password\n        </label>\n    </div>\n    <div>\n        <label>Password Length: <span id="password_length">0</span> bits</label>\n    </div>\n    <div>\n        <label>Shannon Entropy: <span id="shannon_entropy">0</span> bits</label>\n    </div>\n</div>'], ['<div>\n    <div>\n        <label>Expected Strength: <input type=number id="expected_strength" value="64" />bits</label>\n    </div>\n    <div>\n        <label>Test Password: <input type=password id="passwd" ime-mode="disabled"/></label>\n        <div id="actual_strength" ></div>\n    </div>\n    <div>\n        <label>\n            <input type=checkbox id=show_password />\n            Show Password\n        </label>\n    </div>\n    <div>\n        <label>Password Length: <span id="password_length">0</span> bits</label>\n    </div>\n    <div>\n        <label>Shannon Entropy: <span id="shannon_entropy">0</span> bits</label>\n    </div>\n</div>']);
 
@@ -293,6 +287,12 @@ $('#show_password').addEventListener('change', function (e) {
         $passwd.type = 'password';
     }
 });
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
