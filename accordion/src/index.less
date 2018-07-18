@@ -1,0 +1,51 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+body{
+    padding: 1em;
+    background: #ffffff;
+    color: #000000;
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(0,0,0,0)
+}
+
+body {
+    background: #20262E;
+    padding: 20px;
+    font-family: Helvetica;
+}
+
+#app {
+    background: #fff;
+    border-radius: 4px;
+    padding: 20px;
+    transition: all 0.2s;
+}
+
+.accordion{
+    overflow:hidden;
+}
+.accordion-item{
+    position: relative;
+    float: left;
+    transition: width 0.3s;
+}
+
+.accordion-item-text{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+
+    height: 1.5em;
+    line-height: 1.5em;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+    text-align: center;
+}
