@@ -5,7 +5,7 @@ const fs = require('fs')
 const path = require('path')
 const {html, raw} = require('es6-string-html-template')
 
-module.exports = function(params){
+export default function(params){
     const readmeMd = fs.readFileSync('README.md', 'utf8')
     const title = readmeMd.trim().replace(/(^#+\s*)|([\n\r].*)/g, '').trim()
 
